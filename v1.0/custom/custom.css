@@ -1,0 +1,205 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.introduction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+}
+
+h1 {
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+}
+
+.introduction p {
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newRow,
+.titleRow {
+    display: flex;
+    height: 8vh;
+    margin-top: 2vh;
+}
+
+.exerciseName,
+.titleName {
+    width: 40%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-right: 1vw;
+}
+
+.exerciseName p,
+.exerciseComment p,
+.titleName p,
+.titleComment p {
+    font-size: 1.1vw;
+    margin-left: 1vw;
+}
+
+.exerciseName,
+.numberOfSets,
+.numberOfRepetitions {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.numberOfSets,
+.numberOfRepetitions {
+    justify-content: center;
+}
+
+.exerciseName p {
+    text-align: center;
+}
+
+.exerciseComment p {
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+
+.exerciseComment:hover,
+.numberOfSets:hover,
+.numberOfRepetitions:hover {
+    cursor: pointer;
+}
+
+.numberOfSets,
+.numberOfRepetitions,
+.titleSets,
+.titleReps {
+    width: 5%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-right: 1vw;
+    text-align: center;
+}
+
+.exerciseComment,
+.titleComment {
+    width: 40%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-right: 1vw;
+}
+
+.titleRow div {
+    text-align: center;
+    font-weight: bold;
+}
+
+.deleteButton {
+    width: 10%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.deleteButtonTitle {
+    width: 10%;
+}
+
+.deleteButton button {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.addButton {
+    display: flex;
+}
+
+.addButton button {
+    width: 10vw;
+    height: 8vh;
+    margin-top: 2vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: rgb(7, 227, 7);
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+.inputTextArea {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 0;
+    padding-left: 0.3vw;
+    margin: 0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    resize: vertical;
+    overflow: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    font-size: 1.2vw;
+    outline: 3px solid rgb(43, 0, 255);
+}
+
+.exerciseComment {
+    position: relative;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    display: flex;
+    align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.errorOutput {
+    margin-top: 2vh;
+    padding-left: 1vw;
+    color: red;
+    flex: 1;
+    align-items: center;
+}
+
+.errorFadeAway {
+    animation: fadeOut 4s ease-in forwards; /* 3s duration, ease-in timing function */
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

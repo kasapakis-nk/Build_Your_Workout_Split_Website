@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title></title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="custom.css" />
+
+        <script src="customScripts/addExercise.js" defer></script>
+        <script src="customScripts/editFieldComment.js" defer></script>
+        <script src="customScripts/editFieldSets.js" defer></script>
+        <script src="customScripts/editFieldReps.js" defer></script>
+        <script src="customScripts/errors.js" defer></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">
+                You are using an <strong>outdated</strong> browser. Please
+                <a href="#">upgrade your browser</a> to improve your experience.
+            </p>
+        <![endif]-->
+
+        <div class="introduction">
+            <h1>Create Your Own Workout Split - Fully Customizable</h1>
+            <div>
+                <p>
+                    Here you can create, manage and organize your workout
+                    splits, to fit your every need. If you are knowledgeable
+                    enough and one of the standard splits does not suit you,
+                    build your split and customize it here. Alternatively, if
+                    you have were given a personalized program, you can input it
+                    here and monitor your progress.
+                </p>
+                <p>
+                    You can name exercises to add, the number of sets, number of
+                    repetitions and potentially comments. Here you can overview
+                    your various saved programs.
+                </p>
+            </div>
+        </div>
+
+        <main>
+            <div class="titleRow">
+                <div class="titleName">
+                    <p>Exercise Name</p>
+                </div>
+                <div class="titleSets">
+                    <p>Sets</p>
+                </div>
+                <div class="titleReps">
+                    <p>Reps</p>
+                </div>
+                <div class="titleComment">
+                    <p>Comment</p>
+                </div>
+                <div class="deleteButtonTitle"></div>
+            </div>
+
+            <div class="newRow">
+                <div class="exerciseName">
+                    <p>Bent-Over Rows</p>
+                </div>
+                <div class="numberOfSets" onclick="editFieldSets(this)">
+                    <p><strong>x</strong></p>
+                </div>
+                <div class="numberOfRepetitions" onclick="editFieldReps(this)">
+                    <p>12</p>
+                </div>
+                <div class="exerciseComment" onclick="editFieldComment(this)">
+                    <p>Do it explosively</p>
+                </div>
+                <div class="deleteButton">
+                    <button onclick="deleteRow(this)">Delete</button>
+                </div>
+            </div>
+
+            <div class="addButton">
+                <button onclick="addRow(rowToCopy, main, this)">
+                    Add Exercise
+                </button>
+                <div class="errorOutput"></div>
+            </div>
+        </main>
+
+        <!-- <script src="" async defer></script> -->
+    </body>
+</html>
