@@ -7,7 +7,13 @@ function editFieldComment(fieldContainerDiv) {
 
     inputField.className = `inputTextArea`;
     inputField.type = "text";
-    inputField.value = currentText;
+
+    if (currentText === "Example Comment") {
+        inputField.value = "";
+    } else {
+        inputField.value = currentText;
+    }
+
     fieldContainerDiv.innerHTML = "";
     fieldContainerDiv.appendChild(inputField);
     inputField.focus(); // Allows user to type immediately. No additional click.
@@ -36,12 +42,24 @@ function editFieldComment(fieldContainerDiv) {
             while (fieldContainerDiv.firstChild) {
                 fieldContainerDiv.firstChild.remove();
             }
-            fieldContainerDiv.insertAdjacentHTML("beforeend", `<p>#Comment</p>`);
+            fieldContainerDiv.insertAdjacentHTML(
+                "beforeend",
+                `<p>Example Comment</p>`
+            );
 
             adjustRowHeight(fieldContainerDiv, true);
             const errorMessage = `Your input for comment was invalid.\n
             Maximum of 500 characters.`;
             errorPopoutMessage(errorMessage);
+        } else if (currentText === "Example Comment" && inputValue === "") {
+            while (fieldContainerDiv.firstChild) {
+                fieldContainerDiv.firstChild.remove();
+            }
+            fieldContainerDiv.insertAdjacentHTML(
+                "beforeend",
+                `<p>Example Comment</p>`
+            );
+            adjustRowHeight(fieldContainerDiv, true);
         } else {
             fieldContainerDiv.innerHTML = `<p>${inputValue}</p>`;
             adjustRowHeight(fieldContainerDiv, false);
@@ -52,7 +70,7 @@ function editFieldComment(fieldContainerDiv) {
 function adjustRowHeight(fieldContainerDiv, errorIndicator) {
     const pElementWithin = fieldContainerDiv.querySelector("p");
     const pStyle = window.getComputedStyle(pElementWithin);
-    if ((errorIndicator === false)) {
+    if (errorIndicator === false) {
         const pMarginTop = parseFloat(pStyle.marginTop);
         const pMarginBottom = parseFloat(pStyle.marginBottom);
 
@@ -72,7 +90,7 @@ function adjustRowHeight(fieldContainerDiv, errorIndicator) {
             fieldContainerDiv.style.alignItems = "flex-start";
             fieldContainerDiv.style.overflowY = "auto";
         }
-    } else if ((errorIndicator === true)) {
+    } else if (errorIndicator === true) {
         fieldContainerDiv.parentElement.style.height = "8vh";
         fieldContainerDiv.style.alignItems = "center";
         fieldContainerDiv.style.overflowY = "auto";

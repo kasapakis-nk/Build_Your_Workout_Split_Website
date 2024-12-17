@@ -80,6 +80,7 @@ main {
     margin-right: 1vh;
 }
 
+.exerciseName:hover,
 .exerciseComment:hover,
 .numberOfSets:hover,
 .numberOfRepetitions:hover {
@@ -202,4 +203,13 @@ button:hover {
     100% {
         opacity: 0;
     }
+}
+
+.emdash {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.divBeingDraggedCurrently {
+    border: solid black;    
 }

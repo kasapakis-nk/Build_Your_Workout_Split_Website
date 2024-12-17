@@ -1,40 +1,39 @@
-function editFieldSets(fieldContainerDiv) {
+function editFieldReps(fieldContainerDiv) {
     const currentText = fieldContainerDiv.querySelector("p").innerText;
-    let modifiedText = currentText;
     const inputField = document.createElement("textarea");
-
-    if (currentText.startsWith("x")) {
-        modifiedText = currentText.substring(1).trim();
-    }
 
     inputField.className = `inputTextArea`;
     inputField.type = "text";
-    inputField.value = modifiedText;
+    if ((currentText === "Reps") || (currentText.startsWith("\u2014")))  {
+        inputField.value = "";
+    } else {
+        inputField.value = currentText;
+    }
     fieldContainerDiv.innerHTML = "";
     fieldContainerDiv.appendChild(inputField);
 
     inputField.style.textAlign = "center";
     inputField.style.resize = "none";
+
     const containerHeight = inputField.parentElement.offsetHeight;
     inputField.style.paddingTop = `${
         containerHeight / 2 - 0.007 * window.innerWidth
     }px`;
 
-    inputField.focus(); // Allows user to type immediately. No additional click.
-
+    inputField.focus();
     // In case of click away (loss of focus - blur event).
-    inputField.addEventListener("blur", handleInputSets);
+    inputField.addEventListener("blur", handleInputReps);
     // In case of user pressing `Enter` to finalize input.
     inputField.addEventListener("keydown", function (event) {
         if (
             event.key === "Enter" ||
             (event.key === "Enter" && event.shiftKey)
         ) {
-            handleInputSets();
+            handleInputReps();
         }
     });
 
-    function handleInputSets() {
+    function handleInputReps() {
         while (fieldContainerDiv.firstChild) {
             fieldContainerDiv.firstChild.remove();
         }
@@ -42,33 +41,36 @@ function editFieldSets(fieldContainerDiv) {
         let inputValue = inputField.value.trim();
 
         if (
-            (!isNaN(parseFloat(inputValue)) &&
-                isFinite(inputValue) &&
-                inputValue > 0 &&
-                inputValue < 100) ||
-            inputValue === ""
+            !isNaN(parseFloat(inputValue)) &&
+            isFinite(inputValue) &&
+            inputValue > 0 &&
+            inputValue < 1000
         ) {
             fieldContainerDiv.insertAdjacentHTML(
                 "beforeend",
-                `<p><strong>x</strong>${inputValue}</p>`
+                `<p>${inputValue}</p>`
             );
         } else if (
-            /^.-.$/.test(inputValue) ||
-            /^..-..$/.test(inputValue) ||
-            /^.-..$/.test(inputValue)
+            /^\d-\d$/.test(inputValue) ||
+            /^\d\d-\d\d$/.test(inputValue) ||
+            /^\d\d\d-\d\d\d$/.test(inputValue) ||
+            /^\d-\d\d$/.test(inputValue) ||
+            /^\d\d-\d\d\d$/.test(inputValue)
         ) {
             fieldContainerDiv.insertAdjacentHTML(
                 "beforeend",
-                `<p><strong>x</strong>${inputValue}</p>`
+                `<p>${inputValue}</p>`
             );
         } else {
             fieldContainerDiv.insertAdjacentHTML(
                 "beforeend",
-                `<p><strong>x</strong></p>`
+                `<p><span class="emdash">&mdash;</span></p>`
             );
-            const errorMessage = `Your input for sets was invalid.\n
-            Input must be a number (1-99) or a range (5-6).`;
+            if (inputValue !== "") {
+            const errorMessage = `Your input for reps was invalid.\n
+                Input must be a number (1-999) or a range (e.g. 12-15).`;
             errorPopoutMessage(errorMessage);
+            }
         }
 
         inputField.style.textAlign = "unset";

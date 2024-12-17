@@ -13,10 +13,12 @@
         <link rel="stylesheet" href="custom.css" />
 
         <script src="customScripts/addExercise.js" defer></script>
-        <script src="customScripts/editFieldComment.js" defer></script>
-        <script src="customScripts/editFieldSets.js" defer></script>
-        <script src="customScripts/editFieldReps.js" defer></script>
+        <script src="customScripts/editField/editFieldExName.js" defer></script>
+        <script src="customScripts/editField/editFieldSets.js" defer></script>
+        <script src="customScripts/editField/editFieldReps.js" defer></script>
+        <script src="customScripts/editField/editFieldComment.js" defer></script>
         <script src="customScripts/errors.js" defer></script>
+        <script src="customScripts/dragANDdrop.js" defer></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -62,18 +64,18 @@
                 <div class="deleteButtonTitle"></div>
             </div>
 
-            <div class="newRow">
-                <div class="exerciseName">
-                    <p>Bent-Over Rows</p>
+            <div class="newRow" id="Row 1">
+                <div class="exerciseName" onclick="editFieldExName(this)">
+                    <p>Example Exercise</p>
                 </div>
                 <div class="numberOfSets" onclick="editFieldSets(this)">
-                    <p><strong>x</strong></p>
+                    <p><b>x</b></p>
                 </div>
                 <div class="numberOfRepetitions" onclick="editFieldReps(this)">
-                    <p>12</p>
+                    <p><span class="emdash">&mdash;</span></b></p>
                 </div>
                 <div class="exerciseComment" onclick="editFieldComment(this)">
-                    <p>Do it explosively</p>
+                    <p>Example Comment</p>
                 </div>
                 <div class="deleteButton">
                     <button onclick="deleteRow(this)">Delete</button>
