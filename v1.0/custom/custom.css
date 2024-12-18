@@ -2,6 +2,12 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.emdash {
+    /* font-weight: bold; */
+    font-size: larger;
+}
+
+/* <Introduction Div> */
 .introduction {
     display: flex;
     flex-direction: column;
@@ -25,10 +31,13 @@ h1 {
     margin-bottom: 2vh;
 }
 
+/* </Introduction Div> */
+/* <Main Div> */
+
 main {
     display: flex;
     flex-direction: column;
-    width: 90vw;
+    width: 95vw;
     margin-left: auto;
     margin-right: auto;
 }
@@ -40,56 +49,79 @@ main {
     margin-top: 2vh;
 }
 
-.exerciseName,
-.titleName {
-    width: 40%;
+.titleRow div {
+    text-align: center;
+    font-weight: bold;
+}
+
+.titleInteractiveDescriptionOfExercise {
+    width: 5%;
+    margin-right: 1vw;
+}
+
+.interactiveDescriptionOfExercise {
+    width: 5%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     margin-right: 1vw;
 }
 
-.exerciseName p,
-.exerciseComment p,
-.titleName p,
-.titleComment p {
+.titleName {
+    width: 35%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-right: 1vw;
+}
+
+.titleName p {
     font-size: 1.1vw;
     margin-left: 1vw;
 }
 
-.exerciseName,
-.numberOfSets,
-.numberOfRepetitions {
+.exerciseName {
+    width: 35%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-right: 1vw;
     display: flex;
     align-items: center;
     position: relative;
 }
 
-.numberOfSets,
-.numberOfRepetitions {
-    justify-content: center;
-}
-
-.exerciseName p {
-    text-align: center;
-}
-
-.exerciseComment p {
-    margin-top: 0.5vh;
-    margin-bottom: 0.5vh;
-    margin-left: 1vh;
-    margin-right: 1vh;
-}
-
-.exerciseName:hover,
-.exerciseComment:hover,
-.numberOfSets:hover,
-.numberOfRepetitions:hover {
+.exerciseName:hover {
     cursor: pointer;
 }
 
-.numberOfSets,
-.numberOfRepetitions,
-.titleSets,
+.exerciseName p {
+    font-size: 1.1vw;
+    margin-left: 1vw;
+    text-align: center;
+}
+
+.titleSets {
+    width: 5%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-right: 1vw;
+    text-align: center;
+}
+
+.numberOfSets {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    width: 5%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-right: 1vw;
+    text-align: center;
+}
+
+.numberOfSets:hover {
+    cursor: pointer;
+}
+
 .titleReps {
     width: 5%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -98,7 +130,22 @@ main {
     text-align: center;
 }
 
-.exerciseComment,
+.numberOfRepetitions {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    width: 5%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-right: 1vw;
+    text-align: center;
+}
+
+.numberOfRepetitions:hover {
+    cursor: pointer;
+}
+
 .titleComment {
     width: 40%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -106,22 +153,74 @@ main {
     margin-right: 1vw;
 }
 
-.titleRow div {
-    text-align: center;
-    font-weight: bold;
+.titleComment p {
+    font-size: 1.1vw;
+    margin-left: 1vw;
 }
 
-.deleteButton {
-    width: 10%;
+.exerciseComment {
+    width: 40%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-right: 1vw;
+    position: relative;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    display: flex;
+    align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.exerciseComment:hover {
+    cursor: pointer;
+}
+
+.exerciseComment p {
+    font-size: 1.1vw;
+    margin-left: 1vw;
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    margin-right: 1vw;
+}
+
+.rowDropDownTitle {
+    width: 3%;
+    margin-right: 1vw;
+}
+
+.rowDropDown {
+    width: 3%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-right: 1vw;
+}
+
+.rowDropDown button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-image: url('customMedia/dropdownArrowLeft.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.deleteButtonTitle {
+    width: 3%;
+}
+
+.deleteButtonDiv {
+    width: 3%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
 }
 
-.deleteButtonTitle {
-    width: 10%;
-}
-
-.deleteButton button {
+.deleteButtonDiv button {
     width: 100%;
     height: 100%;
     background-color: red;
@@ -172,17 +271,8 @@ button:hover {
     word-wrap: break-word;
     white-space: pre-wrap;
     font-size: 1.2vw;
-    outline: 3px solid rgb(43, 0, 255);
-}
-
-.exerciseComment {
-    position: relative;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    display: flex;
-    align-items: center;
-    overflow-y: auto;
-    overflow-x: hidden;
+    outline: 3px solid rgb(0, 0, 0);
+    z-index: 10;
 }
 
 .errorOutput {
@@ -194,7 +284,7 @@ button:hover {
 }
 
 .errorFadeAway {
-    animation: fadeOut 4s ease-in forwards; /* 3s duration, ease-in timing function */
+    animation: fadeOut 4s ease-in forwards;
 }
 @keyframes fadeOut {
     0% {
@@ -205,11 +295,79 @@ button:hover {
     }
 }
 
-.emdash {
-    font-weight: bold;
-    font-size: larger;
+.divBeingDraggedCurrently {
+    margin-left: 1vw;
+    transform: scale(1.025);
+    transform-origin: bottom left;
 }
 
-.divBeingDraggedCurrently {
-    border: solid black;    
+.expandedExerciseSingleRow {
+    display: flex;
+    height: 6vh;
+    margin-top: 2vh;
 }
+
+.allChildrenDivsOfExpandedExercise {
+display: flex;
+align-items: center;
+position: relative;
+justify-content: center;
+width: 5%;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+border-radius: 8px;
+margin-right: 1vw;
+text-align: center;
+font-weight: bold;
+}
+
+.allChildrenDivsOfExpandedExercise:not(.setNumber, .set10RM):hover {
+    cursor: pointer;
+}
+
+.setNumber {
+    margin-right: 2vw;
+}
+
+.setWeight {
+    width: 10%;
+}
+
+.setComment {
+    width:30%;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.setComment p {
+    font-size: 1.1vw;
+    margin-left: 1vw;
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    margin-right: 1vw;
+}
+
+.deleteSetButtonDiv {
+    width: 3%;
+}
+
+.setPlaceHolder5Width {
+    width: 5%;
+    margin-right: 1vw;
+}
+
+.setPlaceHolder3Width {
+    width: 3%;
+    margin-right: 1vw;
+}
+
+.placeHolderNoMargin {
+    margin-right: 0;
+}
+
+.afterSetsExpansion {
+    font-weight: normal;
+}
+
+/* <Main Div> */

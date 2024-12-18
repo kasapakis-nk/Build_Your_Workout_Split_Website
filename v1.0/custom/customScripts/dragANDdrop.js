@@ -36,7 +36,7 @@ function identifyRowAsBeingDragged() {
         dragTimerIndicator = false;
         divBeingDraggedCurrently.classList.add("divBeingDraggedCurrently");
         document.body.style.userSelect = "none";
-    }, 500);
+    }, 100);
 }
 
 function identifyClickVsHoldToDrag() {

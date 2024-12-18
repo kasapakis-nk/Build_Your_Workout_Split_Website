@@ -19,6 +19,11 @@
         <script src="customScripts/editField/editFieldComment.js" defer></script>
         <script src="customScripts/errors.js" defer></script>
         <script src="customScripts/dragANDdrop.js" defer></script>
+        <script src="customScripts/expandExerciseSets/dropDownSetsMenu.js" defer></script>
+        <script src="customScripts/expandExerciseSets/editSetComment.js" defer></script>
+        <script src="customScripts/expandExerciseSets/editSetWeight.js" defer></script>
+
+
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -49,6 +54,7 @@
 
         <main>
             <div class="titleRow">
+                <div class="titleInteractiveDescriptionOfExercise"></div>
                 <div class="titleName">
                     <p>Exercise Name</p>
                 </div>
@@ -61,10 +67,12 @@
                 <div class="titleComment">
                     <p>Comment</p>
                 </div>
+                <div class="rowDropDownTitle"></div>
                 <div class="deleteButtonTitle"></div>
             </div>
 
             <div class="newRow" id="Row 1">
+                <div class="interactiveDescriptionOfExercise"></div>
                 <div class="exerciseName" onclick="editFieldExName(this)">
                     <p>Example Exercise</p>
                 </div>
@@ -72,24 +80,66 @@
                     <p><b>x</b></p>
                 </div>
                 <div class="numberOfRepetitions" onclick="editFieldReps(this)">
-                    <p><span class="emdash">&mdash;</span></b></p>
+                    <p><b><span class="emdash">&mdash;</span></b></p>
                 </div>
                 <div class="exerciseComment" onclick="editFieldComment(this)">
                     <p>Example Comment</p>
                 </div>
-                <div class="deleteButton">
-                    <button onclick="deleteRow(this)">Delete</button>
+                <div class="rowDropDown">
+                    <button onclick="expandExerciseMenu(this)"></button>
+                </div>
+                <div class="deleteButtonDiv">
+                    <button onclick="deleteRow(this)">Del</button>
                 </div>
             </div>
 
             <div class="addButton">
+                <div class="setPlaceHolder5Width"></div>
                 <button onclick="addRow(rowToCopy, main, this)">
                     Add Exercise
                 </button>
                 <div class="errorOutput"></div>
             </div>
+            
+            <div id="expandedExerciseTemplate" class="expandedExerciseSingleRow" style="display: none;">
+                <div class="setPlaceHolder5Width"></div>
+                <div class="setNumber allChildrenDivsOfExpandedExercise" onclick="">
+                    <p>Set #</p>
+                </div>
+                <div class="setWeight allChildrenDivsOfExpandedExercise" onclick="editSetWeight(this)">
+                    <p>Weight</p>
+                </div>
+                <div class="setReps allChildrenDivsOfExpandedExercise" onclick="">
+                    <p>Reps</p>
+                </div>
+                <div class="setType allChildrenDivsOfExpandedExercise" onclick="">
+                    <p>Set Type</p>
+                </div>
+                <div class="setRIR allChildrenDivsOfExpandedExercise" onclick="">
+                    <p>RIR</p>
+                </div>
+                <div class="setRPE allChildrenDivsOfExpandedExercise" onclick="">
+                    <p>RPE</p>
+                </div>
+                <div class="set10RM allChildrenDivsOfExpandedExercise" onclick="">
+                    <p>10RM</p>
+                </div>
+                <div class="setRestTimer allChildrenDivsOfExpandedExercise" onclick="">
+                    <p>Rest</p>
+                </div>
+                <div class="setComment allChildrenDivsOfExpandedExercise" onclick="editSetComment(this)">
+                    <p>Set Comment</p>
+                </div>
+                <div class="deleteButtonDiv deleteSetButtonDiv allChildrenDivsOfExpandedExercise">
+                    <button>Del</button>
+                </div>
+                <div class="setPlaceHolder3Width"></div>
+                <div class="setPlaceHolder3Width placeHolderNoMargin"></div>
+            </div>
+            
         </main>
 
+        <footer></footer>
         <!-- <script src="" async defer></script> -->
     </body>
 </html>

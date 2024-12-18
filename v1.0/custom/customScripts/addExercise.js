@@ -18,10 +18,12 @@ function addRow(rowToCopy, main, addButton) {
     exerciseName.setAttribute('onclick', 'editFieldExName(this)');
 
     const numberOfSets = newRow.querySelector('.titleSets');
+    numberOfSets.querySelector(`p`).innerHTML = `<strong>x<strong>`
     numberOfSets.className = `numberOfSets`;
     numberOfSets.setAttribute('onclick', 'editFieldSets(this)');
 
     const numberOfRepetitions = newRow.querySelector('.titleReps');
+    numberOfRepetitions.querySelector(`p`).innerHTML = `<b><span class="emdash">&mdash;</span></b>`
     numberOfRepetitions.className = `numberOfRepetitions`
     numberOfRepetitions.setAttribute('onclick', 'editFieldReps(this)');
 
@@ -30,9 +32,9 @@ function addRow(rowToCopy, main, addButton) {
     exerciseComment.className = `exerciseComment`
     exerciseComment.setAttribute('onclick', 'editFieldComment(this)');
 
-    const deleteButton = newRow.querySelector('.deleteButtonTitle');
-    deleteButton.className = `deleteButton`
-    deleteButton.innerHTML = '<button onclick="deleteRow(this)">Delete</button>';
+    const deleteButtonDiv = newRow.querySelector('.deleteButtonTitle');
+    deleteButtonDiv.className = `deleteButtonDiv`
+    deleteButtonDiv.innerHTML = '<button onclick="deleteRow(this)">Del</button>';
 
     getAllRowDivs();
     applyDragEventsToNewRows();
