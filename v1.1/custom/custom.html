@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+
 <html>
    <head>
       <meta charset="utf-8" />
@@ -10,35 +7,13 @@
       <title></title>
       <meta name="description" content="" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="stylesheet" href="custom.css" />
-
-      <script src="customScripts/globalVarsMasterScript.js"></script>
-      <script src="customScripts/addExercise.js" defer></script>
-      <script src="customScripts/editField/editFieldExName.js" defer></script>
-      <script src="customScripts/editField/editFieldSets.js" defer></script>
-      <script src="customScripts/editField/editFieldReps.js" defer></script>
-      <script src="customScripts/editField/editFieldComment.js" defer></script>
-      <script src="customScripts/errors.js" defer></script>
-      <script src="customScripts/dragANDdrop.js" defer></script>
-      <script
-         src="customScripts/expandExerciseSets/dropDownSetsMenu.js"
-         defer
-      ></script>
-      <script
-         src="customScripts/expandExerciseSets/editSetComment.js"
-         defer
-      ></script>
-      <script src="customScripts/expandExerciseSets/editSetWeight.js" defer></script>
+      <link rel="stylesheet" href="customGlobalStyles.css" />
+      <link rel="stylesheet" href="introductionStyles.css" />
+      <link rel="stylesheet" href="staticMainStyles.css" />
    </head>
-   <body>
-      <!--[if lt IE 7]>
-         <p class="browsehappy">
-            You are using an <strong>outdated</strong> browser. Please
-            <a href="#">upgrade your browser</a> to improve your experience.
-         </p>
-      <![endif]-->
 
-      <div class="introduction">
+   <body>
+      <section class="introduction">
          <h1>Create Your Own Workout Split - Fully Customizable</h1>
          <div>
             <p>
@@ -54,109 +29,8 @@
                various saved programs.
             </p>
          </div>
-      </div>
+      </section>
 
-      <main>
-         <div class="titleRow">
-            <div class="titleInteractiveDescriptionOfExercise"></div>
-            <div class="titleName">
-               <p>Exercise Name</p>
-            </div>
-            <div class="titleSets">
-               <p>Sets</p>
-            </div>
-            <div class="titleReps">
-               <p>Reps</p>
-            </div>
-            <div class="titleComment">
-               <p>Comment</p>
-            </div>
-            <div class="rowDropDownTitle"></div>
-            <div class="deleteButtonTitle"></div>
-         </div>
-
-         <div class="newRow" id="Row 1">
-            <div class="interactiveDescriptionOfExercise"></div>
-            <div class="exerciseName" onclick="editFieldExName(this)">
-               <p>Example Exercise</p>
-            </div>
-            <div class="numberOfSets" onclick="editFieldSets(this)">
-               <p><b>x</b></p>
-            </div>
-            <div class="numberOfRepetitions" onclick="editFieldReps(this)">
-               <p>
-                  <b><span class="emdash">&mdash;</span></b>
-               </p>
-            </div>
-            <div class="exerciseComment" onclick="editFieldComment(this)">
-               <p>Example Comment</p>
-            </div>
-            <div class="rowDropDown">
-               <button
-                  onclick="existsDropDownMenu = expandExerciseMenu(this)"
-               ></button>
-            </div>
-            <div class="deleteButtonDiv">
-               <button onclick="deleteRow(this, allExInfo)">Del</button>
-            </div>
-         </div>
-
-         <div class="addButton">
-            <div class="setPlaceHolder5Width"></div>
-            <button onclick="addRow(rowToCopy, main, this, allExInfo)">Add Exercise</button>
-            <div class="errorOutput"></div>
-         </div>
-
-         <div
-            id="expandedExerciseTemplate"
-            class="expandedExerciseSingleRow"
-            style="display: none"
-         >
-            <div class="setPlaceHolder5Width"></div>
-            <div class="setNumber allChildrenDivsOfExpandedExercise" onclick="">
-               <p>Set #</p>
-            </div>
-            <div
-               class="setWeight allChildrenDivsOfExpandedExercise"
-               onclick="editSetWeight(this)"
-            >
-               <p>Weight</p>
-            </div>
-            <div class="setReps allChildrenDivsOfExpandedExercise" onclick="">
-               <p>Reps</p>
-            </div>
-            <div class="setType allChildrenDivsOfExpandedExercise" onclick="">
-               <p>Set Type</p>
-            </div>
-            <div class="setRIR allChildrenDivsOfExpandedExercise" onclick="">
-               <p>RIR</p>
-            </div>
-            <div class="setRPE allChildrenDivsOfExpandedExercise" onclick="">
-               <p>RPE</p>
-            </div>
-            <div class="set10RM allChildrenDivsOfExpandedExercise" onclick="">
-               <p>10RM</p>
-            </div>
-            <div class="setRestTimer allChildrenDivsOfExpandedExercise" onclick="">
-               <p>Rest</p>
-            </div>
-            <div
-               class="setComment allChildrenDivsOfExpandedExercise"
-               onclick="editSetComment(this)"
-            >
-               <p>Set Comment</p>
-            </div>
-            <div
-               class="deleteButtonDiv deleteSetButtonDiv allChildrenDivsOfExpandedExercise"
-            >
-               <button>Del</button>
-            </div>
-            <div class="setPlaceHolder3Width"></div>
-            <div class="setPlaceHolder3Width placeHolderNoMargin"></div>
-         </div>
-      </main>
-
-      <footer></footer>
-      <!-- <script src="" async defer></script> -->
+      <main></main>
    </body>
 </html>
