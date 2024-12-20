@@ -4,7 +4,7 @@ const rowToCopy = document.querySelector(`.titleRow`);
 const main = rowToCopy.parentElement 
 
 
-function addRow(rowToCopy, main, addButton) {
+function addRow(rowToCopy, main, addButton, allExInfo) {
     const clone = rowToCopy.cloneNode(true);
     main.insertBefore(clone, addButton.parentElement);
 
@@ -38,11 +38,11 @@ function addRow(rowToCopy, main, addButton) {
 
     getAllRowDivs();
     applyDragEventsToNewRows();
-    // allExInfo.NumOfSets.push(-1);
+    allExInfo.NumOfSets.push(-1);
     rowIndex++;
 }
 
-    function deleteRow(deleteButton) {
+    function deleteRow(deleteButton, allExInfo) {
     deleteButton.parentElement.parentElement.remove();
 
     rowIndex--;
