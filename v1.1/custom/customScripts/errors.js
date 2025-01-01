@@ -1,10 +1,11 @@
 function errorPopoutMessage(errorMessage) {
-    const errorDiv = document.querySelector('.errorOutput')
+    const errorMesPopoutDiv = document.querySelector('.errorMessageOutput');
+    // Container in which the error message will be shown.
     const errorP = document.createElement('p');
     errorP.innerHTML = `<strong>${errorMessage}</strong>`;
-    errorP.classList.add('errorFadeAway');
+    errorP.classList.add('errorFadeOut');
 
-    errorDiv.appendChild(errorP);
+    errorMesPopoutDiv.appendChild(errorP);
     setTimeout(function() {
         errorP.remove();
     }, 4000);

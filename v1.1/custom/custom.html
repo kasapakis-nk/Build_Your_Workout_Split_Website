@@ -7,9 +7,10 @@
       <title></title>
       <meta name="description" content="" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="stylesheet" href="customGlobalStyles.css" />
-      <link rel="stylesheet" href="introductionStyles.css" />
-      <link rel="stylesheet" href="staticMainStyles.css" />
+      <link rel="stylesheet" href="customStyles/customGlobalStyles.css" />
+      <link rel="stylesheet" href="customStyles/introductionStyles.css" />
+      <link rel="stylesheet" href="customStyles/staticMainStyles.css" />
+      <link rel="stylesheet" href="customStyles/dynamicMainStyles.css" />
    </head>
 
    <body>
@@ -31,6 +32,193 @@
          </div>
       </section>
 
-      <main></main>
+      <main>
+         <!-- Row with Titles for each Exercise Component -->
+         <div class="exRowTitle titleRow">
+            <div class="placeHolder5Width"></div>
+            <div class="exTitleComponent exTitleName">
+               <p>Exercise Name</p>
+            </div>
+            <div class="exTitleComponent exTitleSets">
+               <p>Sets</p>
+            </div>
+            <div class="exTitleComponent exTitleReps">
+               <p>Reps</p>
+            </div>
+            <div class="exTitleComponent exTitleComment">
+               <p>Comment</p>
+            </div>
+            <div class="placeHolder3Width"></div>
+            <div class="placeHolder3Width placeHolderNoMargin"></div>
+         </div>
+
+         <!-- Row with Add Exercise Button and Error Output -->
+         <div class="addExAndErrorRow">
+            <div class="placeHolder5Width"></div>
+            <div class="addExRow">
+               <button
+                  onclick="[currentNumOfExRows, isExExpanded, allExDetails] = addExercise(currentNumOfExRows, this, isExExpanded, allExDetails)"
+               >
+                  Add Exercise
+               </button>
+            </div>
+            <div class="errorMessageOutput"></div>
+            <div class="placeHolder3Width"></div>
+            <div class="placeHolder3Width placeHolderNoMargin"></div>
+         </div>
+      </main>
+
+      <!-- New Exercise Row Template -->
+      <section class="newExRow" id="exNewRowTemplate">
+         <div class="placeHolder5Width"></div>
+         <div class="exRowComponent exName" onclick="editFieldExName(this)">
+            <p>Example Exercise</p>
+         </div>
+         <div
+            class="exRowComponent exSets"
+            onclick="editFieldSets(this, allExDetails)"
+         >
+            <p><b>x</b></p>
+         </div>
+         <div
+            class="exRowComponent exReps"
+            onclick="editFieldReps(this, allExDetails)"
+         >
+            <p>
+               <b><span class="emdash">&mdash;</span></b>
+            </p>
+         </div>
+         <div class="exRowComponent exComment" onclick="editFieldComment(this)">
+            <p>Example Comment</p>
+         </div>
+         <div class="exRowDropDown">
+            <button
+               onclick="isExExpanded = firstTimeExpandExSets(this, allExDetails, isExExpanded)"
+            ></button>
+         </div>
+         <div class="delExRow">
+            <button
+               onclick="[currentNumOfExRows, isExExpanded, allExDetails] = delExercise(currentNumOfExRows, this, isExExpanded, allExDetails)"
+            >
+               Del
+            </button>
+         </div>
+      </section>
+
+      <!-- Expanded Exercise Template -->
+      <section id="expandedExTemplate" class="expandedExWholeSection">
+         <div class="expandedExTitleRow expandedExSingleRow">
+            <div class="placeHolder5Width"></div>
+            <div class="setTitleNumber setRowTitleComponent">
+               <p>Set #</p>
+            </div>
+            <div class="setTitleWeight setRowTitleComponent">
+               <p>Weight</p>
+            </div>
+            <div class="setTitleReps setRowTitleComponent">
+               <p>Reps</p>
+            </div>
+            <div class="setTitleType setRowTitleComponent">
+               <p>Set Type</p>
+            </div>
+            <div class="setTitleRIR setRowTitleComponent">
+               <p>RIR</p>
+            </div>
+            <div class="setTitleRPE setRowTitleComponent">
+               <p>RPE</p>
+            </div>
+            <div class="setTitle10RM setRowTitleComponent">
+               <p>10RM</p>
+            </div>
+            <div class="setTitleRestTimer setRowTitleComponent">
+               <p>Rest</p>
+            </div>
+            <div class="setTitleComment setRowTitleComponent">
+               <p>Set Comment</p>
+            </div>
+            <div class="placeHolder3Width"></div>
+            <div class="placeHolder3Width"></div>
+            <div class="placeHolder3Width placeHolderNoMargin"></div>
+         </div>
+         <section id="expandedExSingleRowTemplate" class="expandedExSingleRow">
+            <div class="placeHolder5Width"></div>
+            <div class="setNumber setRowComponent">
+               <p>Set 1</p>
+            </div>
+            <div
+               class="setWeight setRowComponent"
+               onclick="editSetWeight(this, allExDetails)"
+            >
+               <p>kg</p>
+            </div>
+            <div
+               class="setReps setRowComponent"
+               onclick="editSetReps(this, allExDetails)"
+            >
+               <p><span class="emdash">&mdash;</span></p>
+            </div>
+            <div class="setType setRowComponent" onclick="">
+               <p>Straight</p>
+            </div>
+            <div
+               class="setRIR setRowComponent"
+               onclick="editSetRIR(this, allExDetails)"
+            >
+               <p><span class="emdash">&mdash;</span></p>
+            </div>
+            <div
+               class="setRPE setRowComponent"
+               onclick="editSetRPE(this, allExDetails)"
+            >
+               <p><span class="emdash">&mdash;</span></p>
+            </div>
+            <div class="set10RM setRowComponent" onclick="">
+               <p><span class="emdash">&mdash;</span></p>
+            </div>
+            <div
+               class="setRestTimer setRowComponent"
+               onclick="editSetRest(this, allExDetails)"
+            >
+               <p><span class="emdash">&mdash;</span></p>
+            </div>
+            <div class="setComment setRowComponent" onclick="editSetComment(this)">
+               <p>Set Comment</p>
+            </div>
+            <div
+               class="delExRow delSetRow setRowComponent"
+               onclick="delSet(this, allExDetails)"
+            >
+               <button>Del</button>
+            </div>
+            <div class="placeHolder3Width"></div>
+            <div class="placeHolder3Width placeHolderNoMargin"></div>
+         </section>
+      </section>
+
+      <!-- Load Scripts Section -->
+      <script src="customScripts/globalScripts/globalVarsInit.js"></script>
+      <script src="customScripts/globalScripts/initializeExDetails.js"></script>
+      <script src="customScripts/globalScripts/updateExDetails.js"></script>
+      <script src="customScripts/globalScripts/updateExSetsDetails.js"></script>
+
+      <script src="customScripts/addORdelEx.js"></script>
+      <script src="customScripts/errors.js"></script>
+      <!-- <script src="customScripts/dragANDdrop.js"></script> -->
+
+      <script src="customScripts/editField/editFieldExName.js"></script>
+      <script src="customScripts/editField/editFieldReps.js"></script>
+      <script src="customScripts/editField/editFieldSets.js"></script>
+      <script src="customScripts/editField/editFieldComment.js"></script>
+
+      <script src="customScripts/expandORshrinkExSets/expandORshrinkEx.js"></script>
+      <script src="customScripts/expandORshrinkExSets/editSetWeight.js"></script>
+      <script src="customScripts/expandORshrinkExSets/editSetReps.js"></script>
+      <!-- <script src="customScripts/expandORshrinkExSets/editSetType.js"></script> -->
+      <script src="customScripts/expandORshrinkExSets/editSetRIR.js"></script>
+      <script src="customScripts/expandORshrinkExSets/editSetRPE.js"></script>
+      <script src="customScripts/expandORshrinkExSets/editSet10RM.js"></script>
+      <script src="customScripts/expandORshrinkExSets/editSetRest.js"></script>
+      <script src="customScripts/expandORshrinkExSets/editSetComment.js"></script>
+      <script src="customScripts/expandORshrinkExSets/delSet.js"></script>
    </body>
 </html>

@@ -1,106 +1,174 @@
-function editFieldReps(fieldContainerDiv) {
-   if (fieldContainerDiv.querySelector("textarea")) return;
+// This is what happens ON-CLICK
+function editFieldReps(currentExRepsDiv, allExDetails) {
+   // Prevents error when clicking inside the div while inputting.
+   if (currentExRepsDiv.querySelector("textarea")) return;
 
-   const currentText = fieldContainerDiv.querySelector("p").innerText;
-   const inputField = document.createElement("textarea");
+   // Create and edit properties of the Text Area element where user inputs new data.
+   const repsInputTextArea = document.createElement("textarea");
+   repsInputTextArea.className = `inputTextArea`;
+   repsInputTextArea.style.textAlign = "center";
+   repsInputTextArea.style.resize = "none";
 
-   inputField.className = `inputTextArea`;
-   inputField.type = "text";
-   if (currentText === "Reps" || currentText.startsWith("\u2014")) {
-      inputField.value = "";
-   } else {
-      inputField.value = currentText;
+   // Keep the current num of reps the user has input previously.
+   let previousExReps = currentExRepsDiv.querySelector("p").innerText;
+   // What the USER SEES when they click, depending on previous num of reps input.
+   if (!Number.isFinite(parseFloat(previousExReps))) {
+      previousExReps = "";
    }
-   fieldContainerDiv.innerHTML = "";
-   fieldContainerDiv.appendChild(inputField);
+   repsInputTextArea.value = previousExReps;
 
-   inputField.style.textAlign = "center";
-   inputField.style.resize = "none";
+   // Delete previous container and ADD the text area to the DOM.
+   currentExRepsDiv.firstElementChild.remove();
+   currentExRepsDiv.appendChild(repsInputTextArea);
 
-   const containerHeight = inputField.parentElement.offsetHeight;
-   inputField.style.paddingTop = `${
-      containerHeight / 2 - 0.007 * window.innerWidth
+   // Style to center input text vertically.
+   // This has to be after insertion of textarea into DOM.
+   const repsDivHeight = repsInputTextArea.parentElement.offsetHeight;
+   repsInputTextArea.style.paddingTop = `${
+      repsDivHeight / 2 - 0.007 * window.innerWidth
    }px`;
 
-   inputField.focus();
-   // In case of click away (loss of focus - blur event).
-   inputField.addEventListener("blur", function () {
-      handleInputReps(),
-         updateExpandedExerciseReps(fieldContainerDiv, existsDropDownMenu);
+   // Focus user's cursor on current input text area.
+   repsInputTextArea.focus();
+
+   // Events to finalize user input.
+   // In case of click away (loss of focus - blur event):
+   repsInputTextArea.addEventListener("blur", function () {
+      allExDetails = handleInputReps(
+         currentExRepsDiv,
+         repsInputTextArea,
+         previousExReps,
+         allExDetails
+      );
    });
-   // In case of user pressing `Enter` to finalize input.
-   inputField.addEventListener("keydown", function (event) {
-      if (event.key === "Enter" || (event.key === "Enter" && event.shiftKey)) {
-         handleInputReps();
-         updateExpandedExerciseReps(fieldContainerDiv, existsDropDownMenu);
-      }
-   });
 
-   function handleInputReps() {
-      while (fieldContainerDiv.firstChild) {
-         fieldContainerDiv.firstChild.remove();
-      }
-
-      let inputValue = inputField.value.trim();
-
-      if (
-         Number.isFinite(parseFloat(inputValue)) &&
-         inputValue > 0 &&
-         inputValue < 1000
-      ) {
-         fieldContainerDiv.insertAdjacentHTML("beforeend", `<p>${inputValue}</p>`);
-      } else if (
-         /^\d-\d$/.test(inputValue) ||
-         /^\d\d-\d\d$/.test(inputValue) ||
-         /^\d\d\d-\d\d\d$/.test(inputValue) ||
-         /^\d-\d\d$/.test(inputValue) ||
-         /^\d\d-\d\d\d$/.test(inputValue)
-      ) {
-         fieldContainerDiv.insertAdjacentHTML("beforeend", `<p>${inputValue}</p>`);
-      } else {
-         fieldContainerDiv.insertAdjacentHTML(
-            "beforeend",
-            `<p><b><span class="emdash">&mdash;</span></b></p>`
+   // In case of user pressing `Enter` or `Shift-Enter` to finalize input:
+   repsInputTextArea.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+         allExDetails = handleInputReps(
+            currentExRepsDiv,
+            repsInputTextArea,
+            previousExReps,
+            allExDetails
          );
-         if (inputValue !== "") {
-            const errorMessage = `Your input for reps was invalid.\n
-                Input must be a number (1-999) or a range (e.g. 12-15).`;
-            errorPopoutMessage(errorMessage);
+      }
+   });
+}
+
+// This is what happens AFTER the user "blurs" or presses Enter.
+function handleInputReps(
+   currentRowRepsDiv,
+   repsInputTextArea,
+   previousExReps,
+   allExDetails
+) {
+   // Save user's input for reps.
+   let newExReps = repsInputTextArea.value.trim();
+
+   // Delete the text area to allow p to be inserted.
+   currentRowRepsDiv.firstElementChild.remove();
+
+   const currentExID = parseInt(currentRowRepsDiv.parentElement.id.substring(3));
+
+   // Checks for user input validity.
+   if (Number.isFinite(parseFloat(newExReps)) && newExReps > 0 && newExReps < 1000) {
+      // Insert the user's input into the DOM.
+      currentRowRepsDiv.insertAdjacentHTML("beforeend", `<p>${newExReps}</p>`);
+   } else if (/^\d+-\d+$/.test(newExReps)) {
+      // Insert the user's input into the DOM.
+      currentRowRepsDiv.insertAdjacentHTML("beforeend", `<p>${newExReps}</p>`);
+      // Save average reps since user gave a rep range.
+      const startOfRepRange = newExReps.slice(0, newExReps.indexOf("-"));
+      const endOfRepRange = newExReps.slice(
+         newExReps.indexOf("-") + 1,
+         newExReps.length
+      );
+      const averageReps =
+         (parseFloat(startOfRepRange) + parseFloat(endOfRepRange)) / 2;
+      newExReps = averageReps;
+   } else {
+      {
+         // Insert previous value into the DOM.
+         if (previousExReps !== "") {
+            currentRowRepsDiv.insertAdjacentHTML(
+               "beforeend",
+               `<p>${previousExReps}</p>`
+            );
+         } else {
+            currentRowRepsDiv.insertAdjacentHTML(
+               "beforeend",
+               `<p><b><span class="emdash">&mdash;</span></b></p>`
+            );
          }
       }
 
-      inputField.style.textAlign = "unset";
-      inputField.style.paddingTop = `0`;
-   }
-}
-
-function updateExpandedExerciseReps(exerciseRepDiv, isItExpanded) {
-   if (isItExpanded) {
-      const originalReps = exerciseRepDiv.querySelector("textarea")
-         ? exerciseRepDiv.querySelector("textarea").value
-         : exerciseRepDiv.querySelector("p").innerText;
-
-      const originalSets =
-         exerciseRepDiv.previousElementSibling.querySelector(`p`).innerText.substring(1);
-
-      let allSetRepPs = [];
-      const firstSetRowDiv =
-         exerciseRepDiv.parentElement.nextElementSibling.nextElementSibling;
-
-      let setRowDiv = firstSetRowDiv;
-      for (i = 1; i <= originalSets; i++) {
-         setRepP = setRowDiv.querySelector(`.setReps`).querySelector(`p`);
-         allSetRepPs.push(setRepP);
-         setRowDiv = setRowDiv.nextElementSibling;
+      if (!/^$/.test(newExReps)) {
+         const errorMessage = `Your input for reps was invalid.\n
+      Input must be a number (1-999) or a range (e.g. 12-15).`;
+         errorPopoutMessage(errorMessage);
       }
-
-      allSetRepPs.forEach(
-         (repP) =>
-            (repP.innerHTML = Number.isFinite(parseFloat(originalReps))
-               ? `${originalReps}`
-               : `<span class="emdash">&mdash;</span>`)
-      );
-   } else {
-      return;
    }
+
+   // Reset styles. These are needed only by reps and sets, not comments and name.
+   repsInputTextArea.style.textAlign = "unset";
+   repsInputTextArea.style.paddingTop = `0`;
+
+   // Update global vars.
+   // Update all the set reps if the ex is expanded.
+   if (isExExpanded[currentExID]) {
+      allExDetails = updateExpandedExReps(
+         currentRowRepsDiv,
+         allExDetails,
+         newExReps
+      );
+   }
+   // Initialize and update allExDetails sets if needed.
+   if (Number.isFinite(parseFloat(newExReps))) {
+      allExDetails = initializeExDetailsSets(
+         currentExID,
+         allExDetails,
+         null,
+         newExReps,
+         "ExReps"
+      );
+      allExDetails = updateExDetails(
+         currentExID,
+         allExDetails,
+         null,
+         newExReps,
+         "ExReps"
+      );
+   }
+
+   return allExDetails;
 }
+
+// ADD FUNCTIONALITY TO ONLY UPDATE IF THEY HAVE NOT BEEN CHANGED BY USER, OR IF THEY
+// ARE ALL THE SAME, SO THEY DON'T OVERWRITE THEIR PREVIOUS WORK.
+function updateExpandedExReps(currentRowRepsDiv, allExDetails, newExReps) {
+   const currentExID = parseInt(currentRowRepsDiv.parentElement.id.substring(3));
+   const expandedRowSetSection = document.querySelector(
+      `#expandedRow${currentExID}`
+   );
+   const exSets = allExDetails.allExercises[`Ex${currentExID}`].sets;
+
+   // Add all p elements that refer to "reps" to this array.
+   let allSetRepPs = [];
+
+   for (let set = 0; set < exSets; set++) {
+      let setRepP = expandedRowSetSection
+         .querySelector(`.ex${currentExID}set${set}`)
+         .querySelector(`.setReps`)
+         .querySelector("p");
+      allSetRepPs.push(setRepP);
+   }
+
+   if ([...allSetRepPs].every((p) => p.innerHTML === allSetRepPs[0].innerHTML)) {
+      // Change the content of the p elements based on new reps.
+      allSetRepPs.forEach((repP) => (repP.innerHTML = newExReps));
+   }
+
+   return allExDetails;
+}
+
+// ✓✓✓
