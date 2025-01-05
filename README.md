@@ -2,8 +2,7 @@
   <h3 align="center">💪 Workout Split Organizer 🏋️</h3>
 </p>
 
-###
-###
+
 
 ## ⚡ Quick Use
 
@@ -32,7 +31,7 @@ Plan future workouts using metrics such as your 1RM or 10RM, and more.
 
 This software is covered under a proprietary license. See the LICENSE file for details.
 
-##
+
 
 ### ⭐ 😁 🌟 Star the Repo ⭐ 😁 🌟
 
