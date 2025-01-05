@@ -2,6 +2,9 @@
   <h3 align="center">💪 Workout Split Organizer 🏋️</h3>
 </p>
 
+###
+###
+
 ## ⚡ Quick Use
 
 1. Enter the custom split-building mode.
@@ -25,8 +28,11 @@ This approach enables dynamic rep ranges within a single exercise,
 tracking metrics like Rate of Perceived Exertion (RPE) or Reps in Reserve (RIR).
 Plan future workouts using metrics such as your 1RM or 10RM, and more.
 
-### ⭐ 😁 🌟 Star the Repo ⭐ 😁 🌟
-
 ## License
 
 This software is covered under a proprietary license. See the LICENSE file for details.
+
+##
+
+### ⭐ 😁 🌟 Star the Repo ⭐ 😁 🌟
+
