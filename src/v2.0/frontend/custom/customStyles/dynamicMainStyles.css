@@ -1,0 +1,18 @@
+.inputTextArea {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 0;
+    padding-left: 0.3vw;
+    margin: 0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    resize: vertical;
+    overflow: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    font-size: 1.2vw;
+    outline: 3px solid rgb(0, 0, 0);
+    z-index: 10;
+}
