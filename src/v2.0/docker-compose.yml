@@ -15,10 +15,10 @@ services:
     container_name: SplitOrganizerDB
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: mastermag3   # Root User password.
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}   # Root User password.
       MYSQL_DATABASE: SplitOrganizerDB  # The specific DB will be created on container run, only if it does not exist.
-      MYSQL_USER: nikos                 # To avoid performing DB operations as root user, which is a risk.
-      MYSQL_PASSWORD: mastermag3
+      MYSQL_USER: ${DB_USER}                 # To avoid performing DB operations as root user, which is a risk.
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 20s
@@ -28,10 +28,13 @@ services:
     volumes:
       # Links the named volume to the container's data path, which is where MySQL stores data in the container by default.
       - ./database/database_data:/var/lib/mysql
+      - ../.env:/usr/local/bin/.env
       - ./database/login.sh:/usr/local/bin/login.sh
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     stdin_open: true  # Keep STDIN open
     tty: true         # Allocate a pseudo-TTY
+    env_file:
+      - .env
 
 
     # database-login:
